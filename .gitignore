@@ -1,0 +1,5 @@
+.DS_Store
+child-app/dist
+child-app/node_modules
+parent-app/dist
+parent-app/node_modules
