@@ -1,17 +1,28 @@
+// import nanobus from 'nanobus';
 import Vue from 'vue'
 import App from './App.vue'
+import { eventBus } from './event-bus';
 
 Vue.config.productionTip = false
 
-window.createChildrenApp = function createApp(node = null) {
-    console.error('CREATE APP HERE EEEE', node);
+// const eventBus = nanobus();
 
-    if (!node) {
-      return;
-    }
+const app = {
+    init: function createApp(container = null) {
+        console.error('CREATE APP HERE EEEE', container);
     
-    console.error('NEW VUE APP', node);
-    new Vue({
-      render: h => h(App),
-    }).$mount(node)
+        if (!container) {
+          return;
+        }
+        
+        console.error('NEW VUE APP', container);
+        new Vue({
+          render: h => h(App),
+        }).$mount(container);
+    },
+    eventBus,
 }
+
+Object.assign(window, { childrenApps: { firstApp:app } })
+console.warn('CHILD', { app });
+console.warn('CHILD window.childrenApps', window.childrenApps);
